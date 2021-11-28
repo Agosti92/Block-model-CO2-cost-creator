@@ -26,16 +26,16 @@ t = 45; %loader cycle time,s
 PI = 0.18; %loader power,mW
 E_ANFO = 3.81581; %specific energy of the used explosive
 Ev = 148*10^-6; %drilling specific energy of R1,MJ/cm3     TO BE DEFINED BASED ON THE ROCK TYPE
-d1 = 0.09159134;%background energy value of diesel
-d2 = 0.51997136;%background energy value of diesel
-b1 = 3.7;%background energy value of ANFO
-b2 = 8.4;%background energy value of ANFO
+d1 = 0.09159134;%background energy value of diesel  kg co2 eq/ MJ
+d2 = 0.51997136;%background energy value of diesel kg co2 eq/ MJ
+b1 = 3.7;%background energy value of ANFO kg co2 eq/ MJ
+b2 = 8.4;%background energy value of ANFO kg co2 eq/ MJ
 wi = 15; %bond work index, kwh                             TO BE DEFINED BASED ON THE ROCK TYPE
 crush_size_in = 75000; %paricle size, um
 crush_size_out = 15000; %particle size, um
 mill_size_in = 15000; %particle size, um
 mill_size_out = 100; %particle size, um
-p1 =0.56458524; %electricity impact, value/ KwH
+p1 =0.56458524; %electricity impact, co2 eq/ KwH
 
 %plant position                                            TO BE DEFINED 
 X_p=74.452;%x-coord, m
@@ -68,8 +68,8 @@ S_bd = sqrt((X_d-T.X).^2+(Y_d-T.Y).^2+(Z_d-T.Z).^2).*0.001;%distance block-dump 
 energy_haul_to_plant = ((9.81*S_bp*(mT*(rs/100)+((Rs+Ri)/100)*(2*MT-mT)))/mT);
 energy_haul_to_dump = ((9.81*S_bd*(mT*(rs/100)+((Rs+Ri)/100)*(2*MT-mT)))/mT);
 
-energy_crush = 3.6*wi*((1/sqrt(crush_size_out)-(1/sqrt(crush_size_in))));
-energy_mill = 3.6*wi*((1/sqrt(mill_size_out)-(1/sqrt(mill_size_in))));
+energy_crush = 3.6*wi*10*((1/sqrt(crush_size_out)-(1/sqrt(crush_size_in))));
+energy_mill = 3.6*wi*10*((1/sqrt(mill_size_out)-(1/sqrt(mill_size_in))));
 
 %% computations of GWP  [t CO2-e/ton]
 
@@ -78,7 +78,7 @@ GWP_blast = (energy_blast/b1)*b2/1000;
 GWP_load = (d1+d2)*energy_load/1000;
 GWP_haul_to_plant = (d1+d2)*energy_haul_to_plant/1000;
 GWP_haul_to_dump = (d1+d2)*energy_haul_to_dump/1000;
-GWP_proc = ((energy_crush+energy_mill)/3.6)*p1;
+GWP_proc = ((energy_crush+energy_mill)/3.6)*p1/1000;
 
 %% computation GWP cost [$/ton]
 
