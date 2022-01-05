@@ -35,7 +35,7 @@ crush_size_in = 75000; %paricle size, um
 crush_size_out = 15000; %particle size, um
 mill_size_in = 15000; %particle size, um
 mill_size_out = 100; %particle size, um
-p1 =0.56458524; %electricity impact, co2 eq/ KwH
+p1 =0.56458524; %electricity impact, kg co2 eq/ KwH
 
 %plant position                                            TO BE DEFINED 
 X_p=74.452;%x-coord, m
